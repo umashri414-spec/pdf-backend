@@ -21,19 +21,14 @@ async def convert_pdf(file: UploadFile = File(...)):
         content = await file.read()
         tmp_pdf.write(content)
         tmp_pdf_path = tmp_pdf.name
-
     tmp_docx_path = tmp_pdf_path.replace(".pdf", ".docx")
-    
     cv = Converter(tmp_pdf_path)
     cv.convert(tmp_docx_path)
     cv.close()
-
     with open(tmp_docx_path, "rb") as f:
         docx_content = f.read()
-
     os.unlink(tmp_pdf_path)
     os.unlink(tmp_docx_path)
-
     return Response(
         content=docx_content,
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
