@@ -1,4 +1,9 @@
 fastapi
 uvicorn
-pdf2docx
 python-multipart
+pdf2docx
+pdf2image
+pillow
+python-pptx
+camelot-py[cv]
+openpyxl
